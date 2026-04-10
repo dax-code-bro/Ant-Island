@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ant Island - 100 Day Observation Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ant Island</h1>
+        <p class="subtitle">100 Day Fire Ant Colony Observation Tracker</p>
+        <div id="day-counter">
+            <span id="current-day">Day 0</span>
+            <span id="days-remaining">100 days remaining</span>
+        </div>
+    </header>
+
+    <main>
+        <section id="new-entry">
+            <h2>New Observation</h2>
+            <form id="observation-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="day-number">Day #</label>
+                        <input type="number" id="day-number" min="1" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="time" id="time">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="weather">Weather</label>
+                        <select id="weather">
+                            <option value="">-- Select --</option>
+                            <option value="sunny">Sunny</option>
+                            <option value="partly-cloudy">Partly Cloudy</option>
+                            <option value="cloudy">Cloudy</option>
+                            <option value="rainy">Rainy</option>
+                            <option value="stormy">Stormy</option>
+                            <option value="windy">Windy</option>
+                            <option value="hot">Hot (100+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="temp">Temp (F)</label>
+                        <input type="number" id="temp" placeholder="e.g. 95">
+                    </div>
+                    <div class="form-group">
+                        <label for="moat-status">Moat Status</label>
+                        <select id="moat-status">
+                            <option value="">-- Select --</option>
+                            <option value="full">Full</option>
+                            <option value="good">Good</option>
+                            <option value="low">Low</option>
+                            <option value="dry">Dry / Critical</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="population-estimate">Population Estimate</label>
+                        <select id="population-estimate">
+                            <option value="">-- Select --</option>
+                            <option value="few">Few (under 50)</option>
+                            <option value="small">Small (50-200)</option>
+                            <option value="medium">Medium (200-500)</option>
+                            <option value="large">Large (500-1000)</option>
+                            <option value="huge">Huge (1000+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="queen-status">Queen Status</label>
+                        <select id="queen-status">
+                            <option value="">-- Select --</option>
+                            <option value="underground">Underground (Safe)</option>
+                            <option value="surface">On Surface (Warning)</option>
+                            <option value="missing">Missing / Unknown</option>
+                            <option value="dead">Dead</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="alert-level">Alert Level</label>
+                        <select id="alert-level">
+                            <option value="normal">Normal</option>
+                            <option value="yellow">Yellow - Watch</option>
+                            <option value="red">Red - Critical</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="food-given">Food Given</label>
+                    <input type="text" id="food-given" placeholder="e.g. Turkey piece, Snickers bar, sugar water">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="mound-activity">Mound Activity</label>
+                    <textarea id="mound-activity" rows="2" placeholder="Describe mound building, new tunnels, expansion..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="notable-events">Notable Events</label>
+                    <textarea id="notable-events" rows="3" placeholder="Battles, new species spotted, queen sightings, escapes, bridge tests..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="other-creatures">Other Creatures Spotted</label>
+                    <input type="text" id="other-creatures" placeholder="e.g. June bugs, roly-polies, grey ants, phorid fly, flesh fly">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="general-notes">General Notes</label>
+                    <textarea id="general-notes" rows="3" placeholder="Anything else worth recording..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="save-btn">Save Observation</button>
+                    <button type="button" id="clear-btn">Clear Form</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="timeline">
+            <h2>Timeline</h2>
+            <div id="timeline-filters">
+                <button class="filter-btn active" data-filter="all">All Days</button>
+                <button class="filter-btn" data-filter="red">Red Alerts</button>
+                <button class="filter-btn" data-filter="yellow">Yellow Alerts</button>
+                <button class="filter-btn" data-filter="food">Feeding Log</button>
+            </div>
+            <div id="timeline-entries">
+                <p class="empty-state">No observations yet. Start logging your first day!</p>
+            </div>
+        </section>
+
+        <section id="stats">
+            <h2>Colony Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Days Logged</span>
+                    <span class="stat-value" id="stat-days">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Total Feedings</span>
+                    <span class="stat-value" id="stat-feedings">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Red Alerts</span>
+                    <span class="stat-value" id="stat-alerts">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Species Spotted</span>
+                    <span class="stat-value" id="stat-species">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Queens</span>
+                    <span class="stat-value" id="stat-queens">2</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Colony Status</span>
+                    <span class="stat-value" id="stat-colony-status">Healthy</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Ant Island - 100 Day Observation Project</p>
+    </footer>
+
+    <script src="tracker.js"></script>
+</body>
+</html>
