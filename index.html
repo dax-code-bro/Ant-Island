@@ -3,180 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ant Island - 100 Day Observation Tracker</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Ant Tracker</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
-    <header>
-        <h1>Ant Island</h1>
-        <p class="subtitle">100 Day Fire Ant Colony Observation Tracker</p>
-        <div id="day-counter">
-            <span id="current-day">Day 0</span>
-            <span id="days-remaining">100 days remaining</span>
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-container">
+            <div class="auth-logo">
+                <div class="logo-bg">
+                    <svg class="ant-silhouette" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Ant Silhouette -->
+                        <!-- Antennae -->
+                        <path d="M 75 75 Q 60 50 45 35" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 85 72 Q 80 45 70 30" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <circle cx="45" cy="35" r="3" fill="#000"/>
+                        <circle cx="70" cy="30" r="3" fill="#000"/>
+                        <!-- Head -->
+                        <ellipse cx="82" cy="82" rx="15" ry="12" fill="#000"/>
+                        <!-- Mandibles -->
+                        <path d="M 70 88 Q 62 95 58 92" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M 72 90 Q 65 100 60 98" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <!-- Thorax -->
+                        <ellipse cx="105" cy="85" rx="18" ry="10" fill="#000"/>
+                        <!-- Petiole -->
+                        <ellipse cx="126" cy="88" rx="5" ry="4" fill="#000"/>
+                        <!-- Gaster (abdomen) -->
+                        <ellipse cx="148" cy="90" rx="22" ry="16" fill="#000"/>
+                        <!-- Legs - Front pair -->
+                        <path d="M 90 90 L 75 105 L 65 100" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 92 92 L 78 110 L 68 108" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Legs - Middle pair -->
+                        <path d="M 105 92 L 100 115 L 90 118" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 110 92 L 108 118 L 98 122" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Legs - Back pair -->
+                        <path d="M 135 92 L 138 120 L 148 125" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 130 94 L 132 122 L 142 130" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Stinger -->
+                        <path d="M 168 95 L 175 100" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h1 class="app-title">Ant Tracker</h1>
+            </div>
+
+            <!-- Sign In Form -->
+            <div id="signin-form" class="auth-form active">
+                <h2>Sign In</h2>
+                <div class="form-group">
+                    <label for="signin-username">Username</label>
+                    <input type="text" id="signin-username" placeholder="Enter your username" required>
+                </div>
+                <button type="button" id="signin-btn" class="auth-btn">Sign In</button>
+                <p class="auth-switch">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signup-form" class="auth-form">
+                <h2>Sign Up</h2>
+                <div class="form-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" id="signup-username" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <button type="button" id="signup-btn" class="auth-btn">Create Account</button>
+                <p class="auth-switch">Already have an account? <a href="#" id="show-signin">Sign In</a></p>
+            </div>
         </div>
-    </header>
+    </div>
 
-    <main>
-        <section id="new-entry">
-            <h2>New Observation</h2>
-            <form id="observation-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="day-number">Day #</label>
-                        <input type="number" id="day-number" min="1" max="100" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date</label>
-                        <input type="date" id="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="time">Time</label>
-                        <input type="time" id="time">
-                    </div>
+    <!-- Main App (hidden until login) -->
+    <div id="main-app" class="main-app hidden">
+        <!-- Sidebar Toggle -->
+        <button id="sidebar-toggle" class="sidebar-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Sidebar -->
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <svg class="ant-silhouette-small" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 75 75 Q 60 50 45 35" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 85 72 Q 80 45 70 30" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <circle cx="45" cy="35" r="3" fill="#000"/>
+                        <circle cx="70" cy="30" r="3" fill="#000"/>
+                        <ellipse cx="82" cy="82" rx="15" ry="12" fill="#000"/>
+                        <path d="M 70 88 Q 62 95 58 92" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M 72 90 Q 65 100 60 98" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <ellipse cx="105" cy="85" rx="18" ry="10" fill="#000"/>
+                        <ellipse cx="126" cy="88" rx="5" ry="4" fill="#000"/>
+                        <ellipse cx="148" cy="90" rx="22" ry="16" fill="#000"/>
+                        <path d="M 90 90 L 75 105 L 65 100" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 92 92 L 78 110 L 68 108" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 105 92 L 100 115 L 90 118" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 110 92 L 108 118 L 98 122" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 135 92 L 138 120 L 148 125" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 130 94 L 132 122 L 142 130" stroke="#000" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 168 95 L 175 100" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                    <span>Ant Tracker</span>
                 </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="weather">Weather</label>
-                        <select id="weather">
-                            <option value="">-- Select --</option>
-                            <option value="sunny">Sunny</option>
-                            <option value="partly-cloudy">Partly Cloudy</option>
-                            <option value="cloudy">Cloudy</option>
-                            <option value="rainy">Rainy</option>
-                            <option value="stormy">Stormy</option>
-                            <option value="windy">Windy</option>
-                            <option value="hot">Hot (100+)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="temp">Temp (F)</label>
-                        <input type="number" id="temp" placeholder="e.g. 95">
-                    </div>
-                    <div class="form-group">
-                        <label for="moat-status">Moat Status</label>
-                        <select id="moat-status">
-                            <option value="">-- Select --</option>
-                            <option value="full">Full</option>
-                            <option value="good">Good</option>
-                            <option value="low">Low</option>
-                            <option value="dry">Dry / Critical</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="population-estimate">Population Estimate</label>
-                        <select id="population-estimate">
-                            <option value="">-- Select --</option>
-                            <option value="few">Few (under 50)</option>
-                            <option value="small">Small (50-200)</option>
-                            <option value="medium">Medium (200-500)</option>
-                            <option value="large">Large (500-1000)</option>
-                            <option value="huge">Huge (1000+)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="queen-status">Queen Status</label>
-                        <select id="queen-status">
-                            <option value="">-- Select --</option>
-                            <option value="underground">Underground (Safe)</option>
-                            <option value="surface">On Surface (Warning)</option>
-                            <option value="missing">Missing / Unknown</option>
-                            <option value="dead">Dead</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="alert-level">Alert Level</label>
-                        <select id="alert-level">
-                            <option value="normal">Normal</option>
-                            <option value="yellow">Yellow - Watch</option>
-                            <option value="red">Red - Critical</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="food-given">Food Given</label>
-                    <input type="text" id="food-given" placeholder="e.g. Turkey piece, Snickers bar, sugar water">
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="mound-activity">Mound Activity</label>
-                    <textarea id="mound-activity" rows="2" placeholder="Describe mound building, new tunnels, expansion..."></textarea>
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="notable-events">Notable Events</label>
-                    <textarea id="notable-events" rows="3" placeholder="Battles, new species spotted, queen sightings, escapes, bridge tests..."></textarea>
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="other-creatures">Other Creatures Spotted</label>
-                    <input type="text" id="other-creatures" placeholder="e.g. June bugs, roly-polies, grey ants, phorid fly, flesh fly">
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="general-notes">General Notes</label>
-                    <textarea id="general-notes" rows="3" placeholder="Anything else worth recording..."></textarea>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" id="save-btn">Save Observation</button>
-                    <button type="button" id="clear-btn">Clear Form</button>
-                </div>
-            </form>
-        </section>
-
-        <section id="timeline">
-            <h2>Timeline</h2>
-            <div id="timeline-filters">
-                <button class="filter-btn active" data-filter="all">All Days</button>
-                <button class="filter-btn" data-filter="red">Red Alerts</button>
-                <button class="filter-btn" data-filter="yellow">Yellow Alerts</button>
-                <button class="filter-btn" data-filter="food">Feeding Log</button>
+                <button id="sidebar-close" class="sidebar-close">&times;</button>
             </div>
-            <div id="timeline-entries">
-                <p class="empty-state">No observations yet. Start logging your first day!</p>
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-page="hive-mind">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M2 12h20"/></svg>
+                    </div>
+                    <span>Hive Mind AI</span>
+                </li>
+                <li class="menu-item" data-page="my-colony">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <span>My Colony</span>
+                </li>
+                <li class="menu-item" data-page="create-project">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                    </div>
+                    <span>Create New Colony</span>
+                </li>
+                <li class="menu-item" data-page="current-tracker">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <span>Current Tracker</span>
+                </li>
+                <li class="menu-item" data-page="identify">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <span>Identify</span>
+                </li>
+                <li class="menu-item" data-page="battle-sim">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/></svg>
+                    </div>
+                    <span>Battle Simulator</span>
+                </li>
+                <li class="menu-item" data-page="colony-sim">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                    </div>
+                    <span>Colony Simulator</span>
+                </li>
+                <li class="menu-item" data-page="map-builder">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                    </div>
+                    <span>Map Builder</span>
+                </li>
+                <li class="menu-item" data-page="field-journal">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <span>Field Journal</span>
+                </li>
+                <li class="menu-item" data-page="achievements">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <span>Achievements</span>
+                </li>
+                <li class="menu-item" data-page="help">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <span>Help</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span id="sidebar-username"></span>
+                </div>
+                <button id="logout-btn" class="logout-btn">Log Out</button>
             </div>
-        </section>
+        </nav>
 
-        <section id="stats">
-            <h2>Colony Stats</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-label">Days Logged</span>
-                    <span class="stat-value" id="stat-days">0</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Total Feedings</span>
-                    <span class="stat-value" id="stat-feedings">0</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Red Alerts</span>
-                    <span class="stat-value" id="stat-alerts">0</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Species Spotted</span>
-                    <span class="stat-value" id="stat-species">0</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Queens</span>
-                    <span class="stat-value" id="stat-queens">2</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-label">Colony Status</span>
-                    <span class="stat-value" id="stat-colony-status">Healthy</span>
-                </div>
-            </div>
-        </section>
-    </main>
+        <!-- Sidebar Overlay -->
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-    <footer>
-        <p>Ant Island - 100 Day Observation Project</p>
-    </footer>
+        <!-- Page Content Area -->
+        <div id="content-area" class="content-area">
+            <!-- Pages loaded dynamically -->
+        </div>
+    </div>
 
-    <script src="tracker.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
