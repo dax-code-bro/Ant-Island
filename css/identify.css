@@ -1,0 +1,549 @@
+/* ============================================
+   ANT TRACKER - Identify System
+   ============================================ */
+
+/* Search Section */
+.identify-search {
+    max-width: 600px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+
+.identify-search h2 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.identify-search p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 14px 20px 14px 48px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all var(--transition);
+}
+
+.search-wrapper input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-dim);
+}
+
+.search-wrapper .search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.search-wrapper .search-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Search Results Dropdown */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-top: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+    box-shadow: var(--shadow-lg);
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: var(--bg-hover);
+}
+
+.search-result-item .common-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.search-result-item .scientific-name {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Not an ant warning */
+.not-ant-warning {
+    background: rgba(255, 152, 0, 0.1);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 500px;
+    display: none;
+}
+
+.not-ant-warning.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.not-ant-warning h3 {
+    color: var(--warning);
+    margin-bottom: 8px;
+}
+
+.not-ant-warning p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.not-ant-warning .actual-species {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Caste Selection */
+.caste-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.caste-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.caste-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.caste-card.active {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.caste-card .caste-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.caste-card .caste-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.caste-card .caste-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Species Detail View */
+.species-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* 3D Model Viewer */
+.model-viewer {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.model-viewer canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.model-controls {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.model-controls button {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all var(--transition);
+}
+
+.model-controls button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.model-controls button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Test Simulation Button */
+.test-sim-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 8px 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all var(--transition);
+    z-index: 10;
+}
+
+.test-sim-btn:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+}
+
+/* Species Info Panel */
+.species-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.info-section h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.info-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Parasite List */
+.parasite-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.parasite-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--bg-primary);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.parasite-item:hover {
+    background: var(--accent-dim);
+    color: var(--accent);
+}
+
+.parasite-item .parasite-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.parasite-item .parasite-arrow {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Location Map Placeholder */
+.location-map {
+    background: var(--bg-primary);
+    border-radius: var(--radius);
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* States Tags */
+.states-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.state-tag {
+    padding: 4px 10px;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   TEST SIMULATION OVERLAY
+   ============================================ */
+.sim-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.sim-overlay.active {
+    display: flex;
+}
+
+.sim-container {
+    width: 90%;
+    max-width: 1000px;
+    height: 80vh;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    overflow: hidden;
+}
+
+.sim-sidebar {
+    background: var(--bg-tertiary);
+    border-right: 1px solid var(--border);
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.sim-sidebar h3 {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+}
+
+.sim-category {
+    margin-bottom: 16px;
+}
+
+.sim-category h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.sim-option {
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: all var(--transition);
+    margin-bottom: 2px;
+}
+
+.sim-option:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.sim-option.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+}
+
+.sim-viewport {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sim-viewport canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.sim-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all var(--transition);
+    z-index: 10;
+}
+
+.sim-close:hover {
+    background: var(--danger);
+    border-color: var(--danger);
+}
+
+/* Chemical Info Popup */
+.chemical-popup {
+    position: absolute;
+    background: var(--bg-card);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    max-width: 250px;
+    box-shadow: var(--shadow-lg);
+    z-index: 10;
+    display: none;
+}
+
+.chemical-popup.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.chemical-popup h4 {
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.chemical-popup p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .species-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .model-viewer {
+        aspect-ratio: 4/3;
+    }
+
+    .caste-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sim-container {
+        grid-template-columns: 1fr;
+        width: 95%;
+    }
+
+    .sim-sidebar {
+        max-height: 200px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+}
+
+@media (max-width: 480px) {
+    .caste-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
