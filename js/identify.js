@@ -135,6 +135,142 @@ const AntDatabase = {
             color: { head: '#4A3000', thorax: '#5A3800', gaster: '#3A2000' },
             parasites: []
         },
+        {
+            id: 'monomorium-minimum',
+            commonName: 'Little Black Ant',
+            scientificName: 'Monomorium minimum',
+            family: 'Formicidae',
+            isAnt: true,
+            castes: {
+                queen: { lifespan: '1 year', length: '4-5mm', role: 'Founds colony alone or with multiple queens. Polygynous species — many colonies have multiple queens.' },
+                worker_minor: { lifespan: '1-3 months', length: '1.5-2mm', role: 'One of the smallest household ants. Foragers travel in well-defined trails seeking sweet and greasy foods.' },
+                drone: { lifespan: 'Days', length: '2-3mm', role: 'Winged males for mating flights in summer.' },
+                alate: { lifespan: 'Until founding', length: '4-5mm', role: 'Virgin queens that swarm in June through August.' }
+            },
+            info: 'A common household nuisance ant native to North America. Tiny, jet black ants that often form long trails inside homes seeking food. Not aggressive but persistent.',
+            history: 'Native to North America. Has been documented as a household pest since colonial times. Their small size allows them to invade through cracks and crevices most other ants cannot penetrate.',
+            habitat: 'Found under rocks, in rotting wood, in lawns, and inside walls of homes. Prefers dry environments. Builds small mounds of fine soil.',
+            states: ['All US states'],
+            color: { head: '#0a0a0a', thorax: '#0a0a0a', gaster: '#000000' },
+            parasites: [
+                { name: 'Phorid Flies', description: 'Some phorid species attack little black ants similarly to fire ants.' }
+            ]
+        },
+        {
+            id: 'tapinoma-sessile',
+            commonName: 'Odorous House Ant',
+            scientificName: 'Tapinoma sessile',
+            family: 'Formicidae',
+            isAnt: true,
+            castes: {
+                queen: { lifespan: '8 months - few years', length: '4-5mm', role: 'Multiple queens per colony. Can establish satellite colonies through budding.' },
+                worker_minor: { lifespan: '1-3 months', length: '2.4-3.3mm', role: 'Foragers known for following pheromone trails to sweet foods. When crushed, they emit a distinctive rotten coconut smell.' },
+                drone: { lifespan: 'Days', length: '3-4mm', role: 'Winged males for spring mating flights.' }
+            },
+            info: 'Named for the rotten coconut or blue cheese smell they produce when crushed. One of the most common household ants in North America. Very adaptable to indoor and outdoor environments.',
+            history: 'Native to North America. Has expanded its range significantly with human development. Now considered one of the most successful urban-adapted ant species.',
+            habitat: 'Extremely versatile — found in homes, gardens, forests, fields, and urban areas. Nests under stones, in soil, in walls, inside potted plants, and in any sheltered location.',
+            states: ['All US states'],
+            color: { head: '#3a3a3a', thorax: '#3a3a3a', gaster: '#1a1a1a' },
+            parasites: []
+        },
+        {
+            id: 'pogonomyrmex-barbatus',
+            commonName: 'Red Harvester Ant',
+            scientificName: 'Pogonomyrmex barbatus',
+            family: 'Formicidae',
+            isAnt: true,
+            castes: {
+                queen: { lifespan: '15-30 years', length: '8-10mm', role: 'One of the longest-lived queens in the ant world. Can survive for decades, founding and maintaining a single colony.' },
+                worker_minor: { lifespan: '1 year', length: '5-7mm', role: 'Forage for seeds, store them in underground granaries. Travel up to 100 feet from the nest in foraging columns.' },
+                worker_major: { lifespan: '1 year', length: '7-9mm', role: 'Larger workers that defend the colony and process tougher seeds.' },
+                drone: { lifespan: 'Days', length: '8-10mm', role: 'Winged males for late summer mating flights.' }
+            },
+            info: 'Seed-collecting ants that build large mounds in arid regions of the southwestern US. Their sting is extremely painful — rated 3 on the Schmidt Pain Index. Known for their characteristic cleared circles around mounds.',
+            history: 'Native to the southwestern United States and Mexico. Important seed dispersers in desert ecosystems. Their long-lived colonies have been studied for decades by researchers tracking colony lifespans.',
+            habitat: 'Arid and semi-arid grasslands, deserts, scrublands. Builds large dome mounds with characteristic vegetation-free circles around them.',
+            states: ['TX', 'NM', 'AZ', 'OK', 'NV', 'UT', 'CO'],
+            color: { head: '#A0211B', thorax: '#B83329', gaster: '#7B1810' },
+            parasites: [
+                { name: 'Phorid Flies', description: 'Some phorid species target harvester ants.' }
+            ]
+        },
+        {
+            id: 'lasius-niger',
+            commonName: 'Black Garden Ant',
+            scientificName: 'Lasius niger',
+            family: 'Formicidae',
+            isAnt: true,
+            castes: {
+                queen: { lifespan: '15-30 years', length: '9mm', role: 'One of the longest-lived insects in the world. Founds colony alone after mating flight.' },
+                worker_minor: { lifespan: '1-2 years', length: '3-5mm', role: 'Forage for sugary substances, especially honeydew from aphids. Tend aphid colonies for protection.' },
+                drone: { lifespan: 'Days', length: '3.5-4.5mm', role: 'Winged males for summer mating swarms.' },
+                alate: { lifespan: 'Until founding', length: '9mm', role: 'Virgin queens that participate in famous "Flying Ant Day" mass swarms.' }
+            },
+            info: 'The most common garden ant in Europe. Famous for tending aphid "herds" for honeydew. Their queens hold the record for longest-lived insect — one captive queen lived 28 years and 8 months.',
+            history: 'Native to Europe and Asia, introduced to North America. Their mating flights known as "Flying Ant Day" are an annual phenomenon in Europe where millions of queens and males take flight simultaneously.',
+            habitat: 'Gardens, lawns, parks, forest edges. Builds nests under stones, paving slabs, and in soil. Often found in human environments.',
+            states: ['Northeastern US', 'Pacific Northwest'],
+            color: { head: '#1a1a1a', thorax: '#2a2a2a', gaster: '#0a0a0a' },
+            parasites: [
+                { name: 'Phorid Flies', description: 'Various phorid species parasitize Lasius species.' }
+            ]
+        },
+        {
+            id: 'tetramorium-immigrans',
+            commonName: 'Pavement Ant',
+            scientificName: 'Tetramorium immigrans',
+            family: 'Formicidae',
+            isAnt: true,
+            castes: {
+                queen: { lifespan: '5-15 years', length: '6-8mm', role: 'Founds colony in pavement cracks. Can have multiple queens per colony.' },
+                worker_minor: { lifespan: '1-2 years', length: '2.5-4mm', role: 'Forage in trails, often emerging through pavement cracks. Eat almost anything — sweets, meats, dead insects.' },
+                drone: { lifespan: 'Days', length: '4-5mm', role: 'Winged males for spring mating flights.' }
+            },
+            info: 'Named for their habit of nesting under sidewalks, driveways, and other paved surfaces. Famous for engaging in massive sidewalk wars where thousands of workers from rival colonies battle each other.',
+            history: 'Originally from Europe, introduced to North America in the 1700s through ship ballast. Now found across most of the United States. Their territorial battles in spring have been studied by myrmecologists for decades.',
+            habitat: 'Under and between paving stones, sidewalks, driveways, building foundations. Also found in lawns and under rocks. Highly adapted to urban environments.',
+            states: ['All US states except deep South'],
+            color: { head: '#5a4a3a', thorax: '#6a5a4a', gaster: '#3a2a1a' },
+            parasites: []
+        },
+        {
+            id: 'crematogaster',
+            commonName: 'Acrobat Ant',
+            scientificName: 'Crematogaster cerasi',
+            family: 'Formicidae',
+            isAnt: true,
+            castes: {
+                queen: { lifespan: '5-10 years', length: '5-6mm', role: 'Founds colonies in wood cavities. Some species are polygynous.' },
+                worker_minor: { lifespan: '1-2 years', length: '2.5-4mm', role: 'Famous for raising their heart-shaped gasters over their heads when alarmed — looks like an acrobat. They release defensive chemicals from this position.' },
+                drone: { lifespan: 'Days', length: '4-5mm', role: 'Winged males for summer mating flights.' }
+            },
+            info: 'Named for their distinctive defensive posture — raising their heart-shaped gaster over their head like an acrobat. They have a unique heart-shaped abdomen that distinguishes them from other ants.',
+            history: 'Many species worldwide. Common in North American forests. Often nest in old carpenter ant tunnels or in wood damaged by other insects.',
+            habitat: 'Dead wood, tree branches, hollow stems, sometimes in homes. Prefer moist or partially decayed wood.',
+            states: ['Most US states'],
+            color: { head: '#4a3520', thorax: '#5a4530', gaster: '#3a2510' },
+            parasites: []
+        },
+        {
+            id: 'oecophylla-smaragdina',
+            commonName: 'Asian Weaver Ant',
+            scientificName: 'Oecophylla smaragdina',
+            family: 'Formicidae',
+            isAnt: true,
+            castes: {
+                queen: { lifespan: '5-8 years', length: '15-20mm', role: 'Founds colony in tree canopy. Workers build her first nest from leaves stitched together with larval silk.' },
+                worker_minor: { lifespan: '8-10 weeks', length: '5-6mm', role: 'Care for brood and use larvae as living silk dispensers to weave leaves into nests.' },
+                worker_major: { lifespan: '8-10 weeks', length: '8-10mm', role: 'Foragers and defenders. Hunt insects in the tree canopy. Highly aggressive when defending nest territory.' },
+                drone: { lifespan: 'Days', length: '7-9mm', role: 'Winged males for canopy mating flights.' }
+            },
+            info: 'Famous for building nests by weaving leaves together using silk produced by their own larvae. Workers hold leaves in position while others use larvae as living glue guns. One of the most sophisticated examples of tool use in insects.',
+            history: 'Found across Southeast Asia, Australia, and parts of Africa. Used as biological pest control in Asian agriculture for over 1,700 years — one of the earliest examples of biological control in human history.',
+            habitat: 'Tropical forests and orchards. Nests in tree canopies, often building multiple connected leaf-nests in a single tree.',
+            states: [],
+            color: { head: '#c97a4a', thorax: '#d68a5a', gaster: '#a85a30' },
+            parasites: []
+        },
         // NOT ANTS - will trigger warning
         {
             id: 'velvet-ant',
