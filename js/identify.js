@@ -446,19 +446,7 @@ const Identify = {
 
         detail.innerHTML = `
         <div class="species-detail" style="margin-top: 24px;">
-            <div class="model-viewer" id="ant-model-viewer">
-                <div style="text-align: center; color: var(--text-muted);">
-                    <div style="font-size: 4rem; margin-bottom: 12px;">&#x1F41C;</div>
-                    <p>3D Model Viewer</p>
-                    <p style="font-size: 0.8rem;">Rotate: Click + Drag | Zoom: Scroll</p>
-                </div>
-                <button class="test-sim-btn" onclick="Identify.openSimulation()">Test Simulation</button>
-                <div class="model-controls">
-                    <button class="active">Rotate</button>
-                    <button>Zoom</button>
-                    <button>Reset</button>
-                </div>
-            </div>
+            <div class="model-viewer" id="ant-model-viewer"></div>
             <div class="species-info">
                 <div class="info-section">
                     <h3>Identification</h3>
